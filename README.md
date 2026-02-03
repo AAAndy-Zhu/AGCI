@@ -14,7 +14,7 @@ To analyze the effect of AGCI on cross-modal interactions, we present a case stu
 The baseline Qwen2.5-VL exhibits diffused and weak attention over the image, where the highest attention is incorrectly concentrated on the upper-left region of the image, which is irrelevant to the question, leading to an incorrect prediction. By contrast, after applying AGCI, attention becomes more concentrated on the regions containing the key textual cues, especially for the region containing the word **“British”** (the brightest patch), which serves as the critical OCR cue for answering the question.
 
 <div align="center">
-<img src="https://github.com/AAAndy-Zhu/BaPA/blob/main/case_study.png" width="700px" alt="Information Flow">
+<img src="https://github.com/AAAndy-Zhu/AGCI/blob/main/case_study.png" width="700px" alt="Information Flow">
 </div>
 
 ## 📊 Data
@@ -42,6 +42,7 @@ We randomly sample 10,000 instruction-tuning examples from the LLaVA-v1.5 datase
 - **ScienceQA:** We provide the formatted test data `llava_test_CQM-A.json` in `eval/ScienceQA/`. You should download and unzip test images (test.zip) from [Google Driver](https://drive.google.com/drive/folders/16kuhXdM-MOhYcFIyRj91WvnDnjnF-xHw).
 - **MMMU-Pro:** Clone the repository from [Github](https://github.com/MMMU-Benchmark/MMMU) and download the dataset from [🤗Hugging Face](https://huggingface.co/datasets/MMMU/MMMU_Pro). We also provide the inference scripts in `eval/MMMU/mmmu-pro/infer`.
 - **TextVQA**: Download the test data following [LLaVA](https://github.com/haotian-liu/LLaVA/blob/main/docs/Evaluation.md).
+- **POPE**: Download the dataset from [🤗Hugging Face](https://huggingface.co/datasets/lmms-lab/POPE)
 
 
 ## 🧩 Models
@@ -98,8 +99,7 @@ After downloading all of them, organize the data as follows in `scripts/LLaVA/pl
     ```
 2. Run LoRA-based fine-tuning and merge LoRA weights (More details please refer to [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory).)
     ```bash
-    conda activate llamafactory
-    cd LLaMA-Factory
+    # First install LLaMA-Factory, then
     llamafactory-cli train examples/train_lora/*.yaml
     llamafactory-cli export examples/merge_lora/*.yaml
     ```
@@ -149,11 +149,9 @@ sh scripts/eval_downstream.sh
 ### Evaluation on MMMU-Pro
 We provide the scripts of Qwen2.5-VL for reference.
 ```bash
-# For Gemma3, Qwen2.5-VL and LLaVA-v1.6
 cd eval/MMMU/mmmu-pro/infer
 python infer_qwen2.5vl.py --model path/to/model --dataset_variant standard (10 options)/standard (4 options) --dataset_repo_id path/to/MMMU_Pro_datasets --global_context_lambda your_lambda
 ```
-
 
 
 ## 🙏 Acknowledgements
