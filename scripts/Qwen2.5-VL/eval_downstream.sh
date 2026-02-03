@@ -1,0 +1,16 @@
+python eval_downstream.py --model_path ./checkpoints/Qwen2.5-VL \
+    --eval_file_path_scienceqa /path/to/scienceqa/test.json \
+    --image_path_scienceqa /path/to/scienceqa/images \
+    --answers_file_scienceqa ./results_downstream/scienceqa_answers.json \
+    --eval_file_path_hallusionbench /path/to/hallusionbench/test.json \
+    --image_path_hallusionbench /path/to/hallusionbench/images \
+    --answers_file_hallusionbench ./results_downstream/hallusionbench_answers.json \
+    --eval_file_path_crpe /path/to/crpe/test.jsonl \
+    --image_path_crpe /path/to/crpe/images \
+    --answers_file_crpe ./results_downstream/crpe_answers.json \
+    --eval_file_path_textqa /path/to/textqa/test.jsonl \
+    --image_path_textqa /path/to/textqa/images \
+    --answers_file_textqa ./results_downstream/textqa_answers.json \
+    --eval_file_path_pope /path/to/pope/test.jsonl \
+    --answers_file_pope ./results_downstream/pope_answers.json \
+    --global_context_lambda your_lambda
