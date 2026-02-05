@@ -77,8 +77,9 @@ pip install -e .
 #### Image Preparation
 Download the images of instruction tuning data provided by [LLaVA-v1.5](https://github.com/haotian-liu/LLaVA). 
 
-After downloading all of them, organize the data as follows in `scripts/LLaVA/playground/data`
+After downloading all of them, organize the data as follows in `data/`
 ```
+data
 ├── coco
 │   └── train2017
 ├── gqa
